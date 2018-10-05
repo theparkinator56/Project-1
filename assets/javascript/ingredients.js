@@ -14,21 +14,3 @@ nuts2: ['almonds', 'almond butter', 'cashews', 'chia seeds'],
 dairy:['cheddar', 'Gouda', 'mozzarella', 'muenster', 'parmesan', 'provolone', 'Romano', 'Swiss','brie', 'camembert', 'cottage cheese', 'feta', 'ricotta','milk','american cheese'],
 
 spices:['Coriander Powder', 'Chives', 'Galangal', 'Tulsi', 'Sage', 'Rosemary', 'Yellow Chillies', 'Oregano', 'Nasturtium', 'Salt', 'Mustard Powder', 'Paprika', 'Mint Leaves', 'Marjoram', 'Lemongrass', 'Red Chilli', 'Saffron', 'Dried Fenugreek Leaves','Kashmiri Mirch', 'Onion Seeds', 'Mace', 'Nutmeg', 'Herbs', 'Thyme', 'Turmeric', 'Five Spice Powder', 'Fenugreek Seeds', 'Fennel', 'Green Cardamom', 'Dry Ginger Powder', 'Dill', 'Curry Leaves', 'Cumin Seeds', 'Coriander Seeds', 'Coriander Leaves','Cloves', 'Cinnamon', 'Star Anise', 'Cayenne', 'Caraway Seeds', 'Cajun Spices', 'Rock Salt', 'Black Pepper', 'Black Cumin', 'Bay Leaf', 'Basil', 'Black Cardamom', 'Asafoetida', 'Aniseed', 'Raw Mango Powder', 'Allspice', 'Carom Seeds', 'Parsley','Acacia', 'Carom Seeds', 'Parsley']}
-
-$(document).ready( function (){
-
-
-// Add selected ingredients into shopping list
-var shoppingList = function() {
-    for (i in ingredients.spices) {
-        var ingredient = ingredients.spices[i]
-        var domIngredient = $("<li>").text(ingredient);
-        
-        $(".listItems").append(domIngredient);
-        $(".listItems").append("<hr>")
-        
-    }
-}
-
-shoppingList();
-});
