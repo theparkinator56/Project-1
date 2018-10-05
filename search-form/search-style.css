@@ -1,0 +1,19 @@
+/* General  */
+.container {
+    margin-top: 40px;
+}
+.center-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: fit-content;
+}
+.findContainer {
+    padding: 20px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+/* #searchForm {
+
+} */
