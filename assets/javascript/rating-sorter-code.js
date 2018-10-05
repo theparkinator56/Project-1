@@ -1,3 +1,9 @@
+
+
+var maxRatingRecipes = [];
+var midRatingRecipes = [];
+var lowRatingRecipes = [];
+
 //Should go inside the AJAX call in order to access the proper variables
 
 for (i = 0; i < ratingObj.length; i++) {
