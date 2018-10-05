@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+
+    var useringredients = ["chicken", "rosemary","butter","rice","bread"]
+    var healthsearch = ""
+    var dietsearch= ""
+    var mainingredient = "chicken"
+    var caloriessearch = ""
+    var ingredientssearch = ""
+    var dynamicurl = "https://api.edamam.com/search?q=chicken+rosemary&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
+    var currentsearchobject = []
+    var ratingObj = []
+
+    var maxRatingRecipes = [];
+    var midRatingRecipes = [];
+    var lowRatingRecipes = [];
+
+    $.ajax({
+      url : dynamicurl,
+      method: "GET"
+    }).then(function(response){
+      console.log(response)
+      for (let i=0;i < response.hits.length;i++){
+        var  ingredientlist = response.hits[i].recipe.ingredientLines
+        currentsearchobject.push(ingredientlist)
+      }
+      for (ingredientList in currentsearchobject){
+        var rating = 0
+        for (ingredient in useringredients){
+          for (ingredientLine in currentsearchobject[ingredientList]){
+            if (currentsearchobject[ingredientList][ingredientLine].includes(useringredients[ingredient])){
+              rating++
+            }
+          }
+        }
+        ratingObj.push(rating)
+      }
+    console.log(ratingObj)
+
+        for (i = 0; i < ratingObj.length; i++) {
+
+            if (ratingObj[i] >= useringredients.length) {
+                maxRatingRecipes.push(response.hits[i].recipe);
+            }
+
+            else if (ratingObj[i] === useringredients.length - 1) {
+                midRatingRecipes.push(response.hits[i].recipe);
+            }
+
+            else if (ratingObj[i] === useringredients.length - 2) {
+                lowRatingRecipes.push(response.hits[i].recipe);
+            }
+
+            else {
+                //"Sorry, we didn't find any recipes that matched your ingredients."
+            }
+    }
+
+    console.log(maxRatingRecipes);
+    console.log(midRatingRecipes);
+    console.log(lowRatingRecipes);
+    })
+
+    </script>
+</body>
+</html>
