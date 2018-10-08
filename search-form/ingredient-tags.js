@@ -44,6 +44,8 @@ $(document).ready(function () {
             displayTags(userIngredients);
         }
         console.log(userIngredients);
+        $("#ingredientInput").val("");
+
 
     });
 
