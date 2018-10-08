@@ -4,10 +4,10 @@ var userIngredients = [];    //div id = $("#ingredientTags")
 
 //needed for click function on submit button
 var healthsearch = ""
-var dietsearch= ""
+var dietsearch = ""
 var caloriessearch = ""
 var ingredientssearch = ""
-var dynamicurl = "https://api.edamam.com/search?q="+userIngredients+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
+var dynamicurl = "https://api.edamam.com/search?q=" + userIngredients + "&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
 var ingredientsArray = []
 var ratingArray = []
 var recipeImages = []
@@ -85,6 +85,23 @@ $(document).ready(function () {
         userIngredients.splice(index, 1);
         console.log(userIngredients);
     });
+
+
+    var dietOptionsArray = [];
+    var healthLabels = $(".health-label");
+    console.log(healthLabels[0].id);
+
+    $(healthLabels).on("click", function () {
+
+        for (i in healthLabels) {
+            console.log('id: ' + healthLabels[i].id);
+            console.log('checked: ' + healthLabels[i].checked);
+
+            if (healthLabels[i].checked === true) {
+                dietOptionsArray.push(healthLabels[i].id);
+            }
+            console.log(dietOptionsArray);
+        };
 
 
     $("#submitButton").on("click",function(){
@@ -182,7 +199,9 @@ $(document).ready(function () {
 
   $(document).ready(function(){
       $('.modal').modal();
+
     });
+
 
   $("#moreButton")
 })
