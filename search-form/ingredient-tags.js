@@ -69,36 +69,27 @@ $(document).ready(function () {
 
     //Checkboxes --> add health and diet 
 
-    // var dietOptionsArray = [];
-    // var healthLabel = $(".health-label");
-    // console.log(healthLabel);
+    var dietOptionsArray = [];
+    var healthLabels = $(".health-label");
+    console.log(healthLabels[0].id);
 
 
-    // $(".health-label").on("click", function () {
-    //     let gf = $("#gluten-free");
-    //     let pf = $("#peanut-free");
-    //     let lf = $("#low-fat");
-    //     let lc = $("#low-carb");
-    //     let ls = $("#low-sodium");
-    //     let p = $("#paleo");
-    //     let veg = $("#vegetarian");
-    //     let v = $("#vegan");
-
-    //     for (gf ) {
-    //         console.log('works');
-    //     }
 
 
-        // for (i in healthLabel) {
-        //     console.log(healthLabel[i].attributes.id.value);
-        //     var healthId = healthLabel[i].attributes.id.value;
-        // }
-        // if (dietOptionsArray.includes(healthLabel)) {
-        //     return 0;
-        // } else {
-        //     dietOptionsArray.push(healthId);
-        // }
+    $(healthLabels).on("click", function () {
 
-    // });
+        for (i in healthLabels) {
+            console.log('id: ' + healthLabels[i].id);
+            console.log('checked: ' + healthLabels[i].checked);
+
+            if (healthLabels[i].checked === true){
+                dietOptionsArray.push( healthLabels[i].id);
+            }
+            console.log(dietOptionsArray);
+        };
+
+
+
+    });
 
 });
