@@ -2,8 +2,22 @@
 
 var userIngredients = [];    //div id = $("#ingredientTags")
 
-$(document).ready(function () {
+//needed for click function on submit button
+var healthsearch = ""
+var dietsearch= ""
+var caloriessearch = ""
+var ingredientssearch = ""
+var dynamicurl = "https://api.edamam.com/search?q="+userIngredients+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
+var ingredientsArray = []
+var ratingArray = []
+var recipeImages = []
+var maxRatingRecipes = [];
+var midRatingRecipes = [];
+var lowRatingRecipes = [];
 
+
+$(document).ready(function () {
+    $(".midquery").hide()
     //autocomplete results are equal to ingredients object
     console.log(ingredients);
     $('input.autocomplete').autocomplete({
@@ -18,7 +32,7 @@ $(document).ready(function () {
     $("#addButton").on("click", function (event) {
         event.preventDefault();
 
-        // pass search input into tag 
+        // pass search input into tag
         var ingredientInput = $("#ingredientInput").val().trim();
         console.log(ingredientInput);
 
@@ -32,7 +46,7 @@ $(document).ready(function () {
 
     });
 
-    // add selected ingredients to tags 
+    // add selected ingredients to tags
     function displayTags() {
         $("#ingredientTags").empty();
         // Loops through the array of topics
@@ -52,53 +66,86 @@ $(document).ready(function () {
             $("#ingredientTags").append(tag);          // Added the button to the addTopics div
             $(tag).append(close);
 
+
         };
     };
 
     //on deleting ingredient tag 
+
+                $("#ingredientTags").append(tag);          // Added the button to the addTopics div
+                $(tag).append(close);
+
+        };
+    };
+
+    //on chip delete
     //1. removing button
     //2. remove from userIngredient array .splice
     $(document).on("click", ".close", function () {
         var splicevalue = $(this).val();
-
 
         index = userIngredients.indexOf(splicevalue);
         userIngredients.splice(index, 1);
         console.log(userIngredients);
     });
 
-    //Checkboxes --> add health and diet 
 
-    // var dietOptionsArray = [];
-    // var healthLabel = $(".health-label");
-    // console.log(healthLabel);
+    $("#submitButton").on("click",function(){
+      var mainIngredient = userIngredients[0]
+      $(".start").hide()
+      $(".midquery").show()
+      $.ajax({
+        url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100",
+        method: "GET"
+      }).then(function(response){
+        for (let i=0;i < response.hits.length;i++){
+          var  ingredientlist = response.hits[i].recipe.ingredientLines
+          ingredientsArray.push(ingredientlist)
+          recipeImages.push(response.hits[i].recipe.image||"https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiMl5rxn_fdAhUr0YMKHdiDBxEQjRx6BAgBEAU&url=https%3A%2F%2Fgorving.com%2Fwhat-to-do%2Frecipes-for-the-road&psig=AOvVaw1j9R-0ISQKVVNrQU_XYKI5&ust=1539101999459901")
+        }
+        for (ingredientList in ingredientsArray){
+          var rating = 0
+          for (ingredient in userIngredients){
+            for (ingredientLine in ingredientsArray[ingredientList]){
+              if (ingredientsArray[ingredientList][ingredientLine].includes(userIngredients[ingredient])){
+                rating++
+              }
+            }
+          }
+          ratingArray.push(rating)
+        }
 
 
-    // $(".health-label").on("click", function () {
-    //     let gf = $("#gluten-free");
-    //     let pf = $("#peanut-free");
-    //     let lf = $("#low-fat");
-    //     let lc = $("#low-carb");
-    //     let ls = $("#low-sodium");
-    //     let p = $("#paleo");
-    //     let veg = $("#vegetarian");
-    //     let v = $("#vegan");
 
-    //     for (gf ) {
-    //         console.log('works');
-    //     }
+      //Should go inside the AJAX call in order to access the proper variables
 
+      for (i = 0; i < ratingArray.length; i++) {
 
-        // for (i in healthLabel) {
-        //     console.log(healthLabel[i].attributes.id.value);
-        //     var healthId = healthLabel[i].attributes.id.value;
-        // }
-        // if (dietOptionsArray.includes(healthLabel)) {
-        //     return 0;
-        // } else {
-        //     dietOptionsArray.push(healthId);
-        // }
+          if (ratingArray[i] >= userIngredients.length) {
+              maxRatingRecipes.push(response.hits[i].recipe);
+          }
 
-    // });
+          else if (ratingArray[i] === userIngredients.length - 1) {
+              midRatingRecipes.push(response.hits[i].recipe);
+          }
 
+          else if (ratingArray[i] === userIngredients.length - 2) {
+              lowRatingRecipes.push(response.hits[i].recipe);
+          }
+
+          else {
+              //psudeocode, need id for the DOM element that will display recipes
+              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
+          }
+      }
+    }).then(function(){
+      $(".midquery").hide()
+})
 });
+
+
+
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+
