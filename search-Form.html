@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <!-- Fontawesome CDN for Github icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- CSS Search Form Stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="search-form/search-style.css" />
 
@@ -29,7 +30,7 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light btn modal-trigger" href="#modalHelp">Help</a></li>
                     <!-- Help Tab Modal -->
-                    <div id="modal1" class="modal">
+                    <div id="modalHelp" class="modal">
                         <div class="modal-content">
                             <h4>Recikey: Unlock the Power of Your Pantry</h4>
                             <p>Do you have a random assortment of ingredients at home but no idea what to make with
@@ -38,19 +39,16 @@
                                 You can also create a shopping list of ingredients you still need to get by using the
                                 checkboxes next to each item.</p>
                         </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div>
-                    </div>
-                    <!-- Github link -->
-                    <li></li>
+                    </div>   
+                     <!-- Github link -->
+                    <li><a target="_blank" href="https://github.com/theparkinator56/Project-1"><i class="fab fa-github"></i></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <!-- Search Ingredients Container -->
-    <div class="container">
+    <div class="container start">
 
         <div class="row center-box">
             <div class="col s12">
@@ -132,67 +130,46 @@
                 <button id="submitButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                 </button>
+                <button id="resetButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">New Search
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
         </div>
 
-        <!-- recipe cards -->
-        <!-- <div class="row recipes-displayed">
-            <div class="col m4">
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Shopping list button -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons modal-trigger" href="#modal1">local_grocery_store</i>
+            </a>
+        </div>
 
-            <div class="col m4">
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal bottom-sheet">
+            <div class="modal-content">
+            <h4>Shopping List</h4>
+            <ul class="listItems">
+            <!-- Use js to fill shopping list with items from recipe -->
+            </ul>
             </div>
-
-            <div class="col m4">
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close List</a>
             </div>
         </div> -->
 
+        <!-- recipe cards -->
+        <div class="row recipes-displayed">
+        </div>
 
+        <!-- recipe cards -->
+        
+    </div>
+    <!-- Loading gif -->
+    <div class="container midquery">
+      <div class="row">
+        <div class="col s12 center">
+          <img id="spinner" src="assets/images/ezgif-4-161c9d311dfe.gif" alt="loadinggif">
+        </div>
+      </div>
 
     </div>
 
