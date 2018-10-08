@@ -71,7 +71,9 @@ $(document).ready(function () {
         };
     };
 
+
     //on deleting ingredient tag
+
     //on chip delete
     //1. removing button
     //2. remove from userIngredient array .splice
@@ -175,8 +177,10 @@ $(document).ready(function () {
   })
 
 
+
   $(document).ready(function(){
       $('.modal').modal();
     });
+
 
 })
