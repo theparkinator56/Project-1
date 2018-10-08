@@ -32,12 +32,25 @@
                     <!-- Help Tab Modal -->
                     <div id="modalHelp" class="modal">
                         <div class="modal-content">
-                          <h4>Recikey: Unlock the Power of Your Pantry</h4>
-                          <p>Do you have a random assortment of ingredients at home but no idea what to make with them? <br> Recikey is here to help. <br> Just add whatever ingredients you have on hand into the search bar and Recikey will find a list of recipes using those ingredients! You can also create a shopping list of ingredients you still need to get by using the checkboxes next to each item.</p>
+                            <h4>Recikey: Unlock the Power of Your Pantry</h4>
+                            <p>Do you have a random assortment of ingredients at home but no idea what to make with
+                                them? <br> Recikey is here to help. <br> Just add whatever ingredients you have on hand
+                                into the search bar and Recikey will find a list of recipes using those ingredients!
+                                You can also create a shopping list of ingredients you still need to get by using the
+                                checkboxes next to each item.</p>
                         </div>
+
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
+                    </div>
+                    <!-- Github link -->
+                    <li></li>
+
                      </div>
                      <!-- Github link -->
                     <li><a target="_blank" href="https://github.com/theparkinator56/Project-1"><i class="fab fa-github"></i></a></li>
+
                 </ul>
             </div>
         </nav>
@@ -72,35 +85,51 @@
                 <div class="row divider"></div>
 
                 <!-- options checkboxes -->
-                <form>
-                    <div class="row">
-                        <div class="col m2">
-                            <input id="glutenFree" type="checkbox">
-                            <span>Gluten Free</span>
+                <div class="row">
+                    <form action="#">
+                        <div class="col m3">
+                            <label>
+                                <input id="gluten-free" type="checkbox" class="health-label" data-type="Health">
+                                <span for="gluten-free">Gluten Free</span>
+                            </label>
+                            <label>
+                                <input id="peanut-free" type="checkbox" class="health-label" data-type="Health">
+                                <span for="peanut-free">Peanut Free</span>
+                            </label>
                         </div>
-                        <div class="col m2">
-                            <input id="lowFat" type="checkbox">
-                            <span>Low-Fat</span>
+                        <div class="col m3">
+                            <label>
+                                <input id="low-fat" type="checkbox" class="health-label" data-type="Diet">
+                                <span for="low-fat">Low Fat</span>
+                            </label>
+                            <label>
+                                <input id="low-carb" type="checkbox" class="health-label" data-type="Diet">
+                                <span for="low-carb">Low Carb</span>
+                            </label>
                         </div>
-                        <div class="col m2">
-                            <input id="lowSodium" type="checkbox">
-                            <span>Low-Sodium</span>
+                        <div class="col m3">
+                            <label>
+                                <input id="low-sodium" type="checkbox" class="health-label" data-type="Diet">
+                                <span for="low-sodium">Low Sodium</span>
+                            </label>
+                            <label>
+                                <input id="paleo" type="checkbox" class="health-label" data-type="Health">
+                                <span for="paleo">Paleo</span>
+                            </label>
                         </div>
-                        <div class="col m2">
-                            <input id="paleo" type="checkbox">
-                            <span>Paleo</span>
+                        <div class="col m3">
+                            <label>
+                                <input id="vegetarian" type="checkbox" class="health-label" data-type="Health">
+                                <span for="vegetarian">Vegetarian</span>
+                            </label>
+                            <label>
+                                <input id="vegan" type="checkbox" class="health-label" data-type="Health">
+                                <span for="vegan">Vegan</span>
+                            </label>
                         </div>
-                        <div class="col m2">
-                            <input id="vegetarian" type="checkbox">
-                            <span>Vegetarian</span>
-                        </div>
-                        <div class="col m2">
-                            <input id="vegan" type="checkbox">
-                            <span>Vegan</span>
-                        </div>
-                    </div>
-                </form>
 
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -112,6 +141,65 @@
                 </button>
             </div>
         </div>
+
+        <!-- recipe cards -->
+        <div class="row recipes-displayed">
+            <div class="col m4">
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col m4">
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col m4">
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="http://hdwpro.com/wp-content/uploads/2017/01/3D-Cool-Image.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
 
