@@ -17,7 +17,7 @@ var lowRatingRecipes = [];
 
 
 $(document).ready(function () {
-
+    $(".midquery").hide()
     //autocomplete results are equal to ingredients object
     console.log(ingredients);
     $('input.autocomplete').autocomplete({
@@ -83,6 +83,8 @@ $(document).ready(function () {
 
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
+      $(".start").hide()
+      $(".midquery").show()
       $.ajax({
         url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100",
         method: "GET"
@@ -126,7 +128,9 @@ $(document).ready(function () {
               //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
           }
       }
-    })
+    }).then(function(){
+      $(".midquery").hide()
+})
 });
 
 
