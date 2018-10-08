@@ -155,7 +155,7 @@ $(document).ready(function () {
         cardReveal.addClass("card-reveal")
         cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
         for(line in maxRatingRecipes[i].ingredientLines){
-          cardReveal.append('<p>'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
+          cardReveal.append('<p class="individualIngredient">'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
         }
         card.append(cardImage)
         card.append(cardLink)
@@ -178,7 +178,14 @@ $(document).ready(function () {
     $("#submitButton").show()
   })
 
-
+  // Add items to shopping list
+  $(document).on("click",".individualIngredient", function(){
+    var clickIngredient = $(this).text();
+    var domIngredient = $("<li>").text(clickIngredient);
+            
+    $(".listItems").append(domIngredient);
+    $(".listItems").append("<hr>")
+  })
 
   $(document).ready(function(){
       $('.modal').modal();
