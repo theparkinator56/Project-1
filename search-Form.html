@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Search For Recipes By Ingredient</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- CSS Search Form Stylesheet -->
+    <link rel="stylesheet" type="text/css" media="screen" href="search-form/search-style.css" />
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="assets/javascript/ingredients.js"></script>
+    <script src="assets/javascript/app.js"></script>
+
+    
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-wrapper indigo darken-1">
+                <a href="#" class="brand-logo">Find My Recipe</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Ingredients Container -->
+    <div class="container">
+
+        <div class="row center-box">
+            <div class="col s12">
+                <h3>What's in your fridge?</h3>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="findContainer row">
+            <div id="searchForm" class="col s12">
+                <div class="row">
+                    <div class="input-field col s10">
+                        <input type="text" id="ingredientInput" class="autocomplete" placeholder="Look up ingredients...">
+                    </div>
+                    <div class="col s2">
+                        <a id="addButton" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+
+                <!-- ingredient tags -->
+                <div class="row">
+                    <div class="chip">Chicken <i class="close material-icons">close</i></div>
+                    <div class="chip">Bacon <i class="close material-icons">close</i></div>
+                    <div id="ingredientTags"></div>
+                </div>
+
+                <div class="row divider"></div>
+
+                <!-- options checkboxes -->
+                <div class="row">
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Gluten Free</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Low-Fat</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Low-Sodium</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Paleo</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Vegetarian</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Vegan</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- submit button -->
+        <div class="row center-box">
+            <div class="col s12">
+                <button id="submitButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+        <!-- Recipe cards here -->
+        <div id="cards">
+
+        </div>
+
+    </div>
+
+<!-- jQuery/ Materialize JS -->
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>  
+    <script src="search-form/ingredient-tags.js"></script>
+
+
+
+
+
+</body>
+
+</html>
