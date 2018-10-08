@@ -19,6 +19,7 @@ var count = 0
 $(document).ready(function () {
     $(".midquery").hide()
     $("#resetButton").hide()
+    $(".moreButton").hide()
     //autocomplete results are equal to ingredients object
     console.log(ingredients);
     $('input.autocomplete').autocomplete({
@@ -44,8 +45,6 @@ $(document).ready(function () {
             displayTags(userIngredients);
         }
         console.log(userIngredients);
-        $("#ingredientInput").val("");
-
 
     });
 
@@ -87,29 +86,12 @@ $(document).ready(function () {
         console.log(userIngredients);
     });
 
-// CHECKBOXES 
-    var dietOptionsArray = [];
-    var healthLabels = $(".health-label");
-    console.log(healthLabels[0].id);
-
-    $(healthLabels).on("click", function () {
-
-        for (i in healthLabels) {
-            console.log('id: ' + healthLabels[i].id);
-            console.log('checked: ' + healthLabels[i].checked);
-
-            if (healthLabels[i].checked === true){
-                dietOptionsArray.push( healthLabels[i].id);
-            }
-            console.log(dietOptionsArray);
-        };
-
-
 
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
       $("#submitButton").hide()
       $(".midquery").show()
+      console.log("yes")
       $.ajax({
         url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100",
         method: "GET"
@@ -150,8 +132,8 @@ $(document).ready(function () {
           }
 
           else {
-            $("#displayResults").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
-
+              //psudeocode, need id for the DOM element that will display recipes
+              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
           }
       }
     }).then(function(){
@@ -173,7 +155,7 @@ $(document).ready(function () {
         cardReveal.addClass("card-reveal")
         cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
         for(line in maxRatingRecipes[i].ingredientLines){
-          cardReveal.append('<p class="individualIngredient">'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
+          cardReveal.append('<p>'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
         }
         card.append(cardImage)
         card.append(cardLink)
@@ -185,9 +167,9 @@ $(document).ready(function () {
 });
 
   $("#resetButton").on("click",function(){
-    ingredientsArray = []
-    ratingArray = []
-    recipeImages = []
+    ingredientsArray = [];
+    ratingArray = [];
+    recipeImages = [];
     maxRatingRecipes = [];
     midRatingRecipes = [];
     lowRatingRecipes = [];
@@ -196,19 +178,11 @@ $(document).ready(function () {
     $("#submitButton").show()
   })
 
-  // Add items to shopping list
-  $(document).on("click",".individualIngredient", function(){
-    var clickIngredient = $(this).text();
-    var domIngredient = $("<li>").text(clickIngredient);
-            
-    $(".listItems").append(domIngredient);
-    $(".listItems").append("<hr>")
-  })
+//newcode
 
   $(document).ready(function(){
       $('.modal').modal();
     });
 
-
-});
-});
+  $("#moreButton")
+})
