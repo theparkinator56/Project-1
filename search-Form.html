@@ -39,18 +39,9 @@
                                 You can also create a shopping list of ingredients you still need to get by using the
                                 checkboxes next to each item.</p>
                         </div>
-
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div>
-                    </div>
-                    <!-- Github link -->
-                    <li></li>
-
-                     </div>
+                    </div>   
                      <!-- Github link -->
                     <li><a target="_blank" href="https://github.com/theparkinator56/Project-1"><i class="fab fa-github"></i></a></li>
-
                 </ul>
             </div>
         </nav>
@@ -139,6 +130,26 @@
                 <button id="submitButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Shopping list button -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons modal-trigger" href="#modal1">local_grocery_store</i>
+            </a>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal bottom-sheet">
+            <div class="modal-content">
+            <h4>Shopping List</h4>
+            <ul class="listItems">
+            <!-- Use js to fill shopping list with items from recipe -->
+            </ul>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close List</a>
             </div>
         </div>
 
