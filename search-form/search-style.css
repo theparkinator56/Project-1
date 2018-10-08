@@ -18,7 +18,12 @@
 
 } */
 
+.recipes-displayed {
+    margin-top: 30px;
+}
+
 .modal-content {
     color: black;
     line-height: 25px;
+
 }
