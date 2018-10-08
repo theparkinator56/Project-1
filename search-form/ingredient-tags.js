@@ -73,11 +73,6 @@ $(document).ready(function () {
 
     //on deleting ingredient tag 
 
-                $("#ingredientTags").append(tag);          // Added the button to the addTopics div
-                $(tag).append(close);
-
-        };
-    };
 
     //on chip delete
     //1. removing button
@@ -161,6 +156,6 @@ $("#resetButton").on("click",function(){
 
 $(document).ready(function(){
     $('.modal').modal();
-  });
+});
 
 })
