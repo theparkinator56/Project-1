@@ -14,7 +14,7 @@ var recipeImages = []
 var maxRatingRecipes = [];
 var midRatingRecipes = [];
 var lowRatingRecipes = [];
-
+var count = 0
 
 $(document).ready(function () {
     $(".midquery").hide()
@@ -71,8 +71,8 @@ $(document).ready(function () {
         };
     };
 
-    //on deleting ingredient tag 
 
+    //on deleting ingredient tag
 
     //on chip delete
     //1. removing button
@@ -137,25 +137,50 @@ $(document).ready(function () {
     }).then(function(){
       $(".midquery").hide()
       $("#resetButton").show()
-
+      console.log(maxRatingRecipes[0])
+      for(i=count; i<6; i++){
+        main = $("<div>")
+        main.addClass("col m4")
+        card = $("<div>")
+        card.addClass("card sticky-action")
+        cardImage = $("<div>")
+        cardImage.addClass("card-image waves-effect waves-block waves-light")
+        cardImage.append('<img class="activator" src='+maxRatingRecipes[i].image+'>')
+        cardLink = $("<div>")
+        cardLink.addClass("card-action")
+        cardLink.append('<a href="'+maxRatingRecipes[i].url+'">'+maxRatingRecipes[i].label+'</a>')
+        cardReveal = $("<div>")
+        cardReveal.addClass("card-reveal")
+        cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
+        for(line in maxRatingRecipes[i].ingredientLines){
+          cardReveal.append('<p>'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
+        }
+        card.append(cardImage)
+        card.append(cardLink)
+        card.append(cardReveal)
+        main.append(card)
+        $(".recipes-displayed").append(main)
+      }
 })
 });
 
-$("#resetButton").on("click",function(){
-   ingredientsArray = []
-   ratingArray = []
-   recipeImages = []
-   maxRatingRecipes = [];
-   midRatingRecipes = [];
-   lowRatingRecipes = [];
-   userIngredients = []
-   $("#resetButton").hide()
-   $("#submitButton").show()
-})
+  $("#resetButton").on("click",function(){
+    ingredientsArray = []
+    ratingArray = []
+    recipeImages = []
+    maxRatingRecipes = [];
+    midRatingRecipes = [];
+    lowRatingRecipes = [];
+    userIngredients = []
+    $("#resetButton").hide()
+    $("#submitButton").show()
+  })
 
 
-$(document).ready(function(){
-    $('.modal').modal();
-});
+
+  $(document).ready(function(){
+      $('.modal').modal();
+    });
+
 
 })
