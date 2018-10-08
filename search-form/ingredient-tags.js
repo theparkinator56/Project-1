@@ -7,11 +7,11 @@ $(document).ready(function () {
     //autocomplete results are equal to ingredients object
     console.log(ingredients);
     $('input.autocomplete').autocomplete({
-        data
+        data,
             // "Apple": null,
             // "Watermellon": null,
             // "Chicken": null
-        
+        minLength: 3,
     });
 
     //on click function for adding ingredients
@@ -21,8 +21,6 @@ $(document).ready(function () {
         // pass search input into tag 
         var ingredientInput = $("#ingredientInput").val().trim();
         console.log(ingredientInput);
-
-
 
         if (userIngredients.includes(ingredientInput)) {
             return 0;
