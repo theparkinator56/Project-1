@@ -69,3 +69,9 @@ $(document).ready(function () {
 
 
 });
+
+// Modal trigger
+
+$(document).ready(function(){
+    $('.modal').modal();
+  });

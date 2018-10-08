@@ -17,3 +17,8 @@
 /* #searchForm {
 
 } */
+
+.modal-content {
+    color: black;
+    line-height: 25px;
+}
