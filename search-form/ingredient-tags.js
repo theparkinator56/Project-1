@@ -87,6 +87,24 @@ $(document).ready(function () {
         console.log(userIngredients);
     });
 
+// CHECKBOXES 
+    var dietOptionsArray = [];
+    var healthLabels = $(".health-label");
+    console.log(healthLabels[0].id);
+
+    $(healthLabels).on("click", function () {
+
+        for (i in healthLabels) {
+            console.log('id: ' + healthLabels[i].id);
+            console.log('checked: ' + healthLabels[i].checked);
+
+            if (healthLabels[i].checked === true){
+                dietOptionsArray.push( healthLabels[i].id);
+            }
+            console.log(dietOptionsArray);
+        };
+
+
 
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
@@ -132,8 +150,8 @@ $(document).ready(function () {
           }
 
           else {
-              //psudeocode, need id for the DOM element that will display recipes
-              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
+            $("#displayResults").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
+
           }
       }
     }).then(function(){
@@ -192,4 +210,5 @@ $(document).ready(function () {
     });
 
 
-})
+});
+});

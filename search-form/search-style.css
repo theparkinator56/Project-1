@@ -27,3 +27,7 @@
     line-height: 25px;
 
 }
+#spinner {
+    position: relative;
+    top: -60px;
+}
