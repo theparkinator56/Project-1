@@ -145,6 +145,7 @@ $(document).ready(function () {
 
 })
 });
+
 $("#resetButton").on("click",function(){
    ingredientsArray = []
    ratingArray = []
@@ -162,3 +163,4 @@ $(document).ready(function(){
     $('.modal').modal();
   });
 
+})
