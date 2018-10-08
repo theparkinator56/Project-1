@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Fontawesome CDN for Github icon -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     <!-- CSS Search Form Stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="search-form/search-style.css" />
-
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="assets/javascript/ingredients.js"></script>
+    <script src="assets/javascript/app.js"></script>
 
+    
 
 </head>
 
@@ -28,27 +29,14 @@
             <div class="nav-wrapper indigo darken-1">
                 <a href="#" class="brand-logo">Find My Recipe</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="waves-effect waves-light btn modal-trigger" href="#modalHelp">Help</a></li>
-                    <!-- Help Tab Modal -->
-                    <div id="modalHelp" class="modal">
-                        <div class="modal-content">
-                            <h4>Recikey: Unlock the Power of Your Pantry</h4>
-                            <p>Do you have a random assortment of ingredients at home but no idea what to make with
-                                them? <br> Recikey is here to help. <br> Just add whatever ingredients you have on hand
-                                into the search bar and Recikey will find a list of recipes using those ingredients!
-                                You can also create a shopping list of ingredients you still need to get by using the
-                                checkboxes next to each item.</p>
-                        </div>
-                    </div>   
-                     <!-- Github link -->
-                    <li><a target="_blank" href="https://github.com/theparkinator56/Project-1"><i class="fab fa-github"></i></a></li>
+                    <li><a href="#">Help</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <!-- Search Ingredients Container -->
-    <div class="container start">
+    <div class="container">
 
         <div class="row center-box">
             <div class="col s12">
@@ -70,6 +58,8 @@
 
                 <!-- ingredient tags -->
                 <div class="row">
+                    <div class="chip">Chicken <i class="close material-icons">close</i></div>
+                    <div class="chip">Bacon <i class="close material-icons">close</i></div>
                     <div id="ingredientTags"></div>
                 </div>
 
@@ -77,50 +67,32 @@
 
                 <!-- options checkboxes -->
                 <div class="row">
-                    <form action="#">
-                        <div class="col m3">
-                            <label>
-                                <input id="gluten-free" type="checkbox" class="health-label" data-type="Health">
-                                <span for="gluten-free">Gluten Free</span>
-                            </label>
-                            <label>
-                                <input id="peanut-free" type="checkbox" class="health-label" data-type="Health">
-                                <span for="peanut-free">Peanut Free</span>
-                            </label>
-                        </div>
-                        <div class="col m3">
-                            <label>
-                                <input id="low-fat" type="checkbox" class="health-label" data-type="Diet">
-                                <span for="low-fat">Low Fat</span>
-                            </label>
-                            <label>
-                                <input id="low-carb" type="checkbox" class="health-label" data-type="Diet">
-                                <span for="low-carb">Low Carb</span>
-                            </label>
-                        </div>
-                        <div class="col m3">
-                            <label>
-                                <input id="low-sodium" type="checkbox" class="health-label" data-type="Diet">
-                                <span for="low-sodium">Low Sodium</span>
-                            </label>
-                            <label>
-                                <input id="paleo" type="checkbox" class="health-label" data-type="Health">
-                                <span for="paleo">Paleo</span>
-                            </label>
-                        </div>
-                        <div class="col m3">
-                            <label>
-                                <input id="vegetarian" type="checkbox" class="health-label" data-type="Health">
-                                <span for="vegetarian">Vegetarian</span>
-                            </label>
-                            <label>
-                                <input id="vegan" type="checkbox" class="health-label" data-type="Health">
-                                <span for="vegan">Vegan</span>
-                            </label>
-                        </div>
-
-                    </form>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Gluten Free</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Low-Fat</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Low-Sodium</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Paleo</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Vegetarian</span>
+                    </div>
+                    <div class="col m2">
+                        <input type="checkbox">
+                        <span>Vegan</span>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -128,9 +100,6 @@
         <div class="row center-box">
             <div class="col s12">
                 <button id="submitButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-                <button id="resetButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">New Search
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -173,9 +142,8 @@
 
     </div>
 
-    <!-- jQuery/ Materialize JS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+<!-- jQuery/ Materialize JS -->
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>  
     <script src="search-form/ingredient-tags.js"></script>
 
 
