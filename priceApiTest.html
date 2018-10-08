@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Walmart API Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <p id="#ingredient"></p>
+
+
+    <script>
+        // When ingredients loaded, pull prices for each ingredient individually
+        $("ingredient")
+
+        
+            var ingredient = $("#ingredient").val();
+            var queryURL = "http://api.walmartlabs.com/v1/search?query=" + ingredient + "&format=json&apiKey=6s6dqw45d3x4vutcxmqb7mj9"
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response){
+                var price = response.items[1].salePrice
+                console.log("Price: $" + price);
+        })
+
+    })
+    </script>
+</body>
+</html>
