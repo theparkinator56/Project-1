@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    var userIngredients = ["chicken", "rosemary","butter","olive oil", "bacon"]
+    var healthsearch = ""
+    var dietsearch= ""
+    var mainingredient = "chicken"
+    var caloriessearch = ""
+    var ingredientssearch = ""
+    var dynamicurl = "https://api.edamam.com/search?q=chicken+rosemary&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
+    var ingredientsArray = []
+    var ratingArray = []
+    var recipeImages = []
+    var maxStarArray = []
+    $.ajax({
+      url : dynamicurl,
+      method: "GET"
+    }).then(function(response){
+      console.log(response)
+      for (let i=0;i < response.hits.length;i++){
+        var  ingredientlist = response.hits[i].recipe.ingredientLines
+        ingredientsArray.push(ingredientlist)
+        recipeImages.push(response.hit[i].recipe.image)
+      }
+      for (ingredientList in ingredientsArray){
+        var rating = 0
+        for (ingredient in userIngredients){
+          for (ingredientLine in ingredientsArray[ingredientList]){
+            if (ingredientsArray[ingredientList][ingredientLine].includes(userIngredients[ingredient])){
+              rating++
+            }
+          }
+        }
+        ratingArray.push(rating)
+      }
+    console.log(ratingArray)
+    })
+function sortRecipes(ingredients, rating){
+  for (i in userIngredients){
+    newArray = []
+    if ( ratingArray[i]>= userIngredients.length){
+      newArray.push(ratingArray[i])
+      newArray.push(ingredientsArray[i])
+    }
+  }
+}
+    </script>
+  </body>
+</html>
