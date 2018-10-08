@@ -150,8 +150,8 @@ $(document).ready(function () {
           }
 
           else {
-              //psudeocode, need id for the DOM element that will display recipes
-              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
+            $("#displayResults").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
+
           }
       }
     }).then(function(){
