@@ -12,97 +12,96 @@ var count = 0
 let usefulObject = [];
 let sortedRecipes = []
 $(document).ready(function () {
-    $(".midquery").hide()
-    $("#resetButton").hide()
-    $(".moreButton").hide()
-    //autocomplete results are equal to ingredients object
-    $('input.autocomplete').autocomplete({
-        data,
-        // "Apple": null,
-        // "Watermellon": null,
-        // "Chicken": null
-        minLength: 3,
-    });
-
-    //on click function for adding ingredients
-    $("#addButton").on("click", function (event) {
-        event.preventDefault();
-        // pass search input into tag
-        var ingredientInput = $("#ingredientInput").val().trim();
-        if (userIngredients.includes(ingredientInput)) {
-            return 0;
-        } else {
-            userIngredients.push(ingredientInput);
-            displayTags(userIngredients);
-        }
-        $("#ingredientInput").val("");
-    });
-    $("#ingredientInput").keypress(function(e) {
-      if(e.which == 13) {
-        event.preventDefault();
-        // pass search input into tag
-        var ingredientInput = $("#ingredientInput").val().trim();
-        if (userIngredients.includes(ingredientInput)) {
-            return 0;
-        } else {
-            userIngredients.push(ingredientInput);
-            displayTags(userIngredients);
-        }
-        $("#ingredientInput").val("");
-      }
+  $(".midquery").hide()
+  $("#resetButton").hide()
+  $(".moreButton").hide()
+  //autocomplete results are equal to ingredients object
+  $('input.autocomplete').autocomplete({
+    data,
+    // "Apple": null,
+    // "Watermellon": null,
+    // "Chicken": null
+    minLength: 3,
   });
 
-    // add selected ingredients to tags
-    function displayTags() {
-        $("#ingredientTags").empty();
-        // Loops through the array of topics
-        for (i in userIngredients) {
+  //on click function for adding ingredients
+  $("#addButton").on("click", function (event) {
+    event.preventDefault();
+    // pass search input into tag
+    var ingredientInput = $("#ingredientInput").val().trim();
+    if (userIngredients.includes(ingredientInput)) {
+      return 0;
+    } else {
+      userIngredients.push(ingredientInput);
+      displayTags(userIngredients);
+    }
+    $("#ingredientInput").val("");
+  });
+  $("#ingredientInput").keypress(function (e) {
+    if (e.which == 13) {
+      event.preventDefault();
+      // pass search input into tag
+      var ingredientInput = $("#ingredientInput").val().trim();
+      if (userIngredients.includes(ingredientInput)) {
+        return 0;
+      } else {
+        userIngredients.push(ingredientInput);
+        displayTags(userIngredients);
+      }
+      $("#ingredientInput").val("");
+    }
+  });
 
-            // Then dynamicaly generates tags for each topic in the array
-            //<div class="chip">Chicken <i class="close material-icons">close</i></div>
-            let tag = $("<div>");                   //ingredient tag with class chip
-            tag.addClass("chip");
-            tag.html(userIngredients[i]);
+  // add selected ingredients to tags
+  function displayTags() {
+    $("#ingredientTags").empty();
+    // Loops through the array of topics
+    for (i in userIngredients) {
 
-            let close = $("<i>");
-            close.addClass("close material-icons");
-            close.text("close");
-            close.val(userIngredients[i]);
+      // Then dynamicaly generates tags for each topic in the array
+      //<div class="chip">Chicken <i class="close material-icons">close</i></div>
+      let tag = $("<div>");                   //ingredient tag with class chip
+      tag.addClass("chip");
+      tag.html(userIngredients[i]);
 
-            $("#ingredientTags").append(tag);          // Added the button to the addTopics div
-            $(tag).append(close);
+      let close = $("<i>");
+      close.addClass("close material-icons");
+      close.text("close");
+      close.val(userIngredients[i]);
+
+      $("#ingredientTags").append(tag);          // Added the button to the addTopics div
+      $(tag).append(close);
 
 
-        };
     };
+  };
 
 
-    //on deleting ingredient tag
+  // deleting ingredient tag
+  $(document).on("click", ".close", function () {
+    var splicevalue = $(this).val();
 
-    //on chip delete
-    //1. removing button
-    //2. remove from userIngredient array .splice
-    $(document).on("click", ".close", function (){
-        var splicevalue = $(this).val();
+    index = userIngredients.indexOf(splicevalue);
+    userIngredients.splice(index, 1);
+  });
 
-        index = userIngredients.indexOf(splicevalue);
-        userIngredients.splice(index, 1);
-    });
+  //CHECKBOXES
+  var dietOptionsArray = [];
 
+  $(".health-label").on("click", function () {
 
-    var dietOptionsArray = [];
-    var healthLabels = $(".health-label");
+    let checkedItem = $(this);
+    if (checkedItem.prop("checked") == true) {
+      dietOptionsArray.push(checkedItem.attr('id'));
+      console.log(dietOptionsArray);
+    } else if (checkedItem.prop("checked") == false) {
+      var splicevalue = $(this).val();
+      index = dietOptionsArray.indexOf(splicevalue);
+      dietOptionsArray.splice(index, 1);
+      console.log(dietOptionsArray);
+    }
+  });
 
-    $(healthLabels).on("click", function () {
-
-        for (i in healthLabels) {
-
-            if (healthLabels[i].checked === true) {
-                dietOptionsArray.push(healthLabels[i].id);
-            }
-        };
-
-      })
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
       console.log(mainIngredient)
@@ -146,15 +145,15 @@ $(document).ready(function () {
     $("#submitButton").show();
   })
 
-//Modal Functionality
+  //Modal Functionality
 
-  $(document).ready(function(){
-      $('.modal').modal();
+  $(document).ready(function () {
+    $('.modal').modal();
 
-    });
+  });
 
 
-  $(".moreButton").on("click",function(){
+  $(".moreButton").on("click", function () {
     addRecipes()
   })
 
