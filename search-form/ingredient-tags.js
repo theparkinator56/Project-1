@@ -255,5 +255,11 @@ function addRecipes(){
       $(".listItems").append("<hr>")
     })
   
+
+  
 }
 
+// Options button
+  $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
