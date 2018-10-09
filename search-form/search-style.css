@@ -31,3 +31,7 @@
     position: relative;
     top: -60px;
 }
+
+.card-action {
+    overflow: hidden;
+}
