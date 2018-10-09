@@ -39,7 +39,6 @@ $(document).ready(function () {
     //on click function for adding ingredients
     $("#addButton").on("click", function (event) {
         event.preventDefault();
-        $("#ingredientInput").val("");
         // pass search input into tag
         var ingredientInput = $("#ingredientInput").val().trim();
         if (userIngredients.includes(ingredientInput)) {
@@ -118,6 +117,7 @@ $(document).ready(function () {
       })
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
+      $(".recipes-displayed").empty();
       $("#submitButton").hide()
       $(".midquery").show()
       $.ajax({
@@ -142,7 +142,7 @@ $(document).ready(function () {
         }
 
 
-      //Should go inside the AJAX call in order to access the proper variables
+
 
       for (i = 0; i < ratingArray.length; i++) {
            if (ratingArray[i] >= userIngredients.length) {
@@ -172,8 +172,7 @@ $(document).ready(function () {
           }
 
           else {
-              //psudeocode, need id for the DOM element that will display recipes
-              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
+            $(".recipes-displayed").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
           }
       }
       for (recipeArray in ratingRecipesArrays){
@@ -196,12 +195,17 @@ $(document).ready(function () {
     maxRatingRecipes = [];
     midRatingRecipes = [];
     lowRatingRecipes = [];
-    userIngredients = []
-    $("#resetButton").hide()
-    $("#submitButton").show()
+    userIngredients = [];
+
+    $("#ingredientInput").val("");
+    $("#ingredientTags").empty();
+
+    $(".moreButton").hide();
+    $("#resetButton").hide();
+    $("#submitButton").show();
   })
 
-//newcode
+//Modal Functionality
 
   $(document).ready(function(){
       $('.modal').modal();
@@ -242,3 +246,12 @@ function addRecipes(){
     count += 1
   }
 }
+
+  // Add items to shopping list
+  $(document).on("click",".individualIngredient", function(){
+    var clickIngredient = $(this).text();
+    var domIngredient = $("<li>").text(clickIngredient);
+
+    $(".listItems").append(domIngredient);
+    $(".listItems").append("<hr>")
+  })
