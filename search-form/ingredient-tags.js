@@ -178,7 +178,7 @@ function addRecipes(){
     cardReveal.addClass("card-reveal")
     cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
     for(line in tempArray[i].ingredientLines){
-      cardReveal.append('<p>'+tempArray[i].ingredientLines[line]+'</p>')
+      cardReveal.append('<p class="individualIngredient">'+tempArray[i].ingredientLines[line]+'</p>')
     }
     card.append(cardImage)
     card.append(cardLink)
