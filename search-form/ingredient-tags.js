@@ -223,6 +223,7 @@ function addRecipes(){
 //Grocery Store API search based on ZIP code entered
 
   $("#groceryButton").on("click",function() {
+    event.preventDefault();
 
     jQuery.ajaxPrefilter(function(options) {
         if (options.crossDomain && jQuery.support.cors) {
@@ -246,7 +247,7 @@ function addRecipes(){
 
         for (i=0; i < 3; i++) {
             let groceryDiv = $("<div>");
-                groceryDiv.addClass("col m4");
+                groceryDiv.addClass("col s4");
 
                 groceryDiv.append("<h5>" + response.businesses[i].name + "</h5>");
 <<<<<<< HEAD
@@ -254,6 +255,9 @@ function addRecipes(){
                 groceryDiv.append("<p>" + response.businesses[i].location.display_address[1] + "</p>");
             $("#groceryDisplay").append(groceryDiv);
 =======
+                groceryDiv.append("<span>" + response.businesses[i].location.display_address[0] + "</span> <br>");
+                groceryDiv.append("<span>" + response.businesses[i].location.display_address[1] + "</span>");
+            $("#groceryDisplay").append(groceryDiv);        
 >>>>>>> master
         }
     });
