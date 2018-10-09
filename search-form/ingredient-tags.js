@@ -187,12 +187,17 @@ function addRecipes(){
     $(".recipes-displayed").append(main)
     count += 1
   }
-}
 
-  // Add items to shopping list
-  $(document).on("click",".individualIngredient", function(){
-    var clickIngredient = $(this).text();
-    var domIngredient = $("<li>").text(clickIngredient);
+    // Add items to shopping list
+    $(document).on("click",".individualIngredient", function(){
+      var clickIngredient = $(this).text();
+      var domIngredient = $("<li>").text(clickIngredient);
+      console.log(clickIngredient);
+      $(".listItems").append(domIngredient);
+      $(".listItems").append("<hr>")
+    })
+  
+}
 
     $(".listItems").append(domIngredient);
     $(".listItems").append("<hr>")
@@ -201,3 +206,4 @@ function addRecipes(){
 function SortByRatingDesc(unsortedArray) {
   return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
   x}
+
