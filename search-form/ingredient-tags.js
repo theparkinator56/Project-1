@@ -195,11 +195,18 @@ function addRecipes(){
       console.log(clickIngredient);
       $(".listItems").append(domIngredient);
       $(".listItems").append("<hr>")
-    })
+    }) 
 
+  
 }
+
+// Options button
+  $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
 
 
 function SortByRatingDesc(unsortedArray) {
   return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
   x}
+
