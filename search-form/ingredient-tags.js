@@ -234,7 +234,7 @@ function addRecipes(){
     var zipCode = $("#zipCode").val().trim();
     $("#zipCode").empty();
 
-    var groceryURL = "https://api.yelp.com/v3/businesses/search?location=" + zipCode + "&radius=16000&categories=grocery&limit=3";
+    var groceryURL = "https://api.yelp.com/v3/businesses/search?location=" + zipCode + "&radius=16000&term=grocery&limit=3";
 
     $.ajax({
         url: groceryURL,
@@ -248,17 +248,10 @@ function addRecipes(){
         for (i=0; i < 3; i++) {
             let groceryDiv = $("<div>");
                 groceryDiv.addClass("col s4");
-
                 groceryDiv.append("<h5>" + response.businesses[i].name + "</h5>");
-<<<<<<< HEAD
-                groceryDiv.append("<p>" + response.businesses[i].location.display_address[0] + "</p>");
-                groceryDiv.append("<p>" + response.businesses[i].location.display_address[1] + "</p>");
-            $("#groceryDisplay").append(groceryDiv);
-=======
                 groceryDiv.append("<span>" + response.businesses[i].location.display_address[0] + "</span> <br>");
                 groceryDiv.append("<span>" + response.businesses[i].location.display_address[1] + "</span>");
-            $("#groceryDisplay").append(groceryDiv);        
->>>>>>> master
+            $("#groceryDisplay").append(groceryDiv);
         }
     });
   });
