@@ -11,9 +11,16 @@ var dynamicurl = "https://api.edamam.com/search?q=" + userIngredients + "&app_id
 var ingredientsArray = []
 var ratingArray = []
 var recipeImages = []
+var ratingRecipes7 = [];
+var ratingRecipes6 = [];
+var ratingRecipes5 = [];
+var ratingRecipes4 = [];
+var ratingRecipes3 = [];
+var ratingRecipes2 = [];
+var ratingRecipes1 = [];
+var ratingRecipes5 = [];
+var ratingRecipesArrays = [ratingRecipes7,ratingRecipes6,ratingRecipes5,ratingRecipes4,ratingRecipes3,ratingRecipes2,ratingRecipes1];
 var maxRatingRecipes = [];
-var midRatingRecipes = [];
-var lowRatingRecipes = [];
 var count = 0
 
 $(document).ready(function () {
@@ -32,7 +39,7 @@ $(document).ready(function () {
     //on click function for adding ingredients
     $("#addButton").on("click", function (event) {
         event.preventDefault();
-
+        $("#ingredientInput").val("");
         // pass search input into tag
         var ingredientInput = $("#ingredientInput").val().trim();
         if (userIngredients.includes(ingredientInput)) {
@@ -41,8 +48,22 @@ $(document).ready(function () {
             userIngredients.push(ingredientInput);
             displayTags(userIngredients);
         }
-
+        $("#ingredientInput").val("");
     });
+    $("#ingredientInput").keypress(function(e) {
+      if(e.which == 13) {
+        event.preventDefault();
+        // pass search input into tag
+        var ingredientInput = $("#ingredientInput").val().trim();
+        if (userIngredients.includes(ingredientInput)) {
+            return 0;
+        } else {
+            userIngredients.push(ingredientInput);
+            displayTags(userIngredients);
+        }
+        $("#ingredientInput").val("");
+      }
+  });
 
     // add selected ingredients to tags
     function displayTags() {
@@ -121,27 +142,44 @@ $(document).ready(function () {
         }
 
 
-
       //Should go inside the AJAX call in order to access the proper variables
 
       for (i = 0; i < ratingArray.length; i++) {
-
-          if (ratingArray[i] >= userIngredients.length) {
-              maxRatingRecipes.push(response.hits[i].recipe);
+           if (ratingArray[i] >= userIngredients.length) {
+              ratingRecipes7.push(response.hits[i].recipe);
           }
 
           else if (ratingArray[i] === userIngredients.length - 1) {
-              midRatingRecipes.push(response.hits[i].recipe);
+              ratingRecipes6.push(response.hits[i].recipe);
           }
 
           else if (ratingArray[i] === userIngredients.length - 2) {
-              lowRatingRecipes.push(response.hits[i].recipe);
+              ratingRecipes5.push(response.hits[i].recipe);
+          }
+          else if (ratingArray[i] === userIngredients.length - 3) {
+              ratingRecipes4.push(response.hits[i].recipe);
+          }
+
+          else if (ratingArray[i] === userIngredients.length - 4) {
+              ratingRecipes3.push(response.hits[i].recipe);
+          }
+          else if (ratingArray[i] === userIngredients.length - 5) {
+              ratingRecipes2.push(response.hits[i].recipe);
+          }
+
+          else if (ratingArray[i] === userIngredients.length - 6) {
+              ratingRecipes1.push(response.hits[i].recipe);
           }
 
           else {
               //psudeocode, need id for the DOM element that will display recipes
               //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
           }
+      }
+      for (recipeArray in ratingRecipesArrays){
+        for (recipe in ratingRecipesArrays[recipeArray]){
+          maxRatingRecipes.push(ratingRecipesArrays[recipeArray][recipe])
+        }
       }
     }).then(function(){
       $(".midquery").hide()
@@ -174,9 +212,10 @@ $(document).ready(function () {
   $(".moreButton").on("click",function(){
     addRecipes()
   })
+
 })
+
 function addRecipes(){
-  console.log(count)
   thisCount = count + 6
   for(i=count; i<thisCount ; i++){
     main = $("<div>")
