@@ -15,6 +15,10 @@
     border-radius: 5px;
 }
 /* Nav Bar */
+.nav {
+    background-color: #666;
+    box-shadow: none;
+}
 .nav-wrapper {
     margin: 0 20px;
 }
