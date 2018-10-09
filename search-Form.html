@@ -29,7 +29,24 @@
             <div class="nav-wrapper indigo darken-1">
                 <a href="#" class="brand-logo">Find My Recipe</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+<<<<<<< HEAD
                     <li><a href="#">Help</a></li>
+=======
+                    <li><a class="waves-effect waves-light btn modal-trigger" href="#modalHelp">Help</a></li>
+                    <!-- Help Tab Modal -->
+                    <div id="modalHelp" class="modal">
+                        <div class="modal-content">
+                            <h4>Recikey: Unlock the Power of Your Pantry</h4>
+                            <p>Do you have a random assortment of ingredients at home but no idea what to make with
+                                them? <br> Recikey is here to help. <br> Just add whatever ingredients you have on hand
+                                into the search bar and Recikey will find a list of recipes using those ingredients!
+                                You can also create a shopping list of ingredients you still need to get by using the
+                                checkboxes next to each item.</p>
+                        </div>
+                    </div>
+                     <!-- Github link -->
+                    <li><a target="_blank" href="https://github.com/theparkinator56/Project-1"><i class="fab fa-github"></i></a></li>
+>>>>>>> 9e3255466e46ebc648323da8058c6c34ef18455c
                 </ul>
             </div>
         </nav>
@@ -123,24 +140,30 @@
             <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close List</a>
             </div>
-        </div> -->
+        </div>
 
         <!-- recipe cards -->
         <div class="row recipes-displayed">
         </div>
 
         <!-- recipe cards -->
-        
+
     </div>
     <!-- Loading gif -->
-    <div class="container midquery">
-      <div class="row">
+    <div class="container">
+      <div class="row midquery">
         <div class="col s12 center">
           <img id="spinner" src="assets/images/ezgif-4-161c9d311dfe.gif" alt="loadinggif">
         </div>
       </div>
-
-    </div>
+        <div class="row moreButton">
+          <div class="col s12 center">
+            <button id="moreButton" class="btn btn-large waves-effect waves-light" type="submit" name="action">More results!
+                <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </div>
 
 <!-- jQuery/ Materialize JS -->
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>  

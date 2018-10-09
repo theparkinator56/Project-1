@@ -4,23 +4,30 @@ var userIngredients = [];    //div id = $("#ingredientTags")
 
 //needed for click function on submit button
 var healthsearch = ""
-var dietsearch= ""
+var dietsearch = ""
 var caloriessearch = ""
 var ingredientssearch = ""
-var dynamicurl = "https://api.edamam.com/search?q="+userIngredients+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
+var dynamicurl = "https://api.edamam.com/search?q=" + userIngredients + "&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
 var ingredientsArray = []
 var ratingArray = []
 var recipeImages = []
+var ratingRecipes7 = [];
+var ratingRecipes6 = [];
+var ratingRecipes5 = [];
+var ratingRecipes4 = [];
+var ratingRecipes3 = [];
+var ratingRecipes2 = [];
+var ratingRecipes1 = [];
+var ratingRecipes5 = [];
+var ratingRecipesArrays = [ratingRecipes7,ratingRecipes6,ratingRecipes5,ratingRecipes4,ratingRecipes3,ratingRecipes2,ratingRecipes1];
 var maxRatingRecipes = [];
-var midRatingRecipes = [];
-var lowRatingRecipes = [];
 var count = 0
 
 $(document).ready(function () {
     $(".midquery").hide()
     $("#resetButton").hide()
+    $(".moreButton").hide()
     //autocomplete results are equal to ingredients object
-    console.log(ingredients);
     $('input.autocomplete').autocomplete({
         data,
         // "Apple": null,
@@ -32,22 +39,31 @@ $(document).ready(function () {
     //on click function for adding ingredients
     $("#addButton").on("click", function (event) {
         event.preventDefault();
-
+        $("#ingredientInput").val("");
         // pass search input into tag
         var ingredientInput = $("#ingredientInput").val().trim();
-        console.log(ingredientInput);
-
         if (userIngredients.includes(ingredientInput)) {
             return 0;
         } else {
             userIngredients.push(ingredientInput);
             displayTags(userIngredients);
         }
-        console.log(userIngredients);
         $("#ingredientInput").val("");
-
-
     });
+    $("#ingredientInput").keypress(function(e) {
+      if(e.which == 13) {
+        event.preventDefault();
+        // pass search input into tag
+        var ingredientInput = $("#ingredientInput").val().trim();
+        if (userIngredients.includes(ingredientInput)) {
+            return 0;
+        } else {
+            userIngredients.push(ingredientInput);
+            displayTags(userIngredients);
+        }
+        $("#ingredientInput").val("");
+      }
+  });
 
     // add selected ingredients to tags
     function displayTags() {
@@ -79,33 +95,27 @@ $(document).ready(function () {
     //on chip delete
     //1. removing button
     //2. remove from userIngredient array .splice
-    $(document).on("click", ".close", function () {
+    $(document).on("click", ".close", function (){
         var splicevalue = $(this).val();
 
         index = userIngredients.indexOf(splicevalue);
         userIngredients.splice(index, 1);
-        console.log(userIngredients);
     });
 
-// CHECKBOXES 
+
     var dietOptionsArray = [];
     var healthLabels = $(".health-label");
-    console.log(healthLabels[0].id);
 
     $(healthLabels).on("click", function () {
 
         for (i in healthLabels) {
-            console.log('id: ' + healthLabels[i].id);
-            console.log('checked: ' + healthLabels[i].checked);
 
-            if (healthLabels[i].checked === true){
-                dietOptionsArray.push( healthLabels[i].id);
+            if (healthLabels[i].checked === true) {
+                dietOptionsArray.push(healthLabels[i].id);
             }
-            console.log(dietOptionsArray);
         };
 
-
-
+      })
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
       $("#submitButton").hide()
@@ -132,62 +142,57 @@ $(document).ready(function () {
         }
 
 
-
       //Should go inside the AJAX call in order to access the proper variables
 
       for (i = 0; i < ratingArray.length; i++) {
-
-          if (ratingArray[i] >= userIngredients.length) {
-              maxRatingRecipes.push(response.hits[i].recipe);
+           if (ratingArray[i] >= userIngredients.length) {
+              ratingRecipes7.push(response.hits[i].recipe);
           }
 
           else if (ratingArray[i] === userIngredients.length - 1) {
-              midRatingRecipes.push(response.hits[i].recipe);
+              ratingRecipes6.push(response.hits[i].recipe);
           }
 
           else if (ratingArray[i] === userIngredients.length - 2) {
-              lowRatingRecipes.push(response.hits[i].recipe);
+              ratingRecipes5.push(response.hits[i].recipe);
+          }
+          else if (ratingArray[i] === userIngredients.length - 3) {
+              ratingRecipes4.push(response.hits[i].recipe);
+          }
+
+          else if (ratingArray[i] === userIngredients.length - 4) {
+              ratingRecipes3.push(response.hits[i].recipe);
+          }
+          else if (ratingArray[i] === userIngredients.length - 5) {
+              ratingRecipes2.push(response.hits[i].recipe);
+          }
+
+          else if (ratingArray[i] === userIngredients.length - 6) {
+              ratingRecipes1.push(response.hits[i].recipe);
           }
 
           else {
-            $("#displayResults").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
-
+              //psudeocode, need id for the DOM element that will display recipes
+              //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
           }
+      }
+      for (recipeArray in ratingRecipesArrays){
+        for (recipe in ratingRecipesArrays[recipeArray]){
+          maxRatingRecipes.push(ratingRecipesArrays[recipeArray][recipe])
+        }
       }
     }).then(function(){
       $(".midquery").hide()
       $("#resetButton").show()
-      console.log(maxRatingRecipes[0])
-      for(i=count; i<6; i++){
-        main = $("<div>")
-        main.addClass("col m4")
-        card = $("<div>")
-        card.addClass("card sticky-action")
-        cardImage = $("<div>")
-        cardImage.addClass("card-image waves-effect waves-block waves-light")
-        cardImage.append('<img class="activator" src='+maxRatingRecipes[i].image+'>')
-        cardLink = $("<div>")
-        cardLink.addClass("card-action")
-        cardLink.append('<a href="'+maxRatingRecipes[i].url+'">'+maxRatingRecipes[i].label+'</a>')
-        cardReveal = $("<div>")
-        cardReveal.addClass("card-reveal")
-        cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
-        for(line in maxRatingRecipes[i].ingredientLines){
-          cardReveal.append('<p class="individualIngredient">'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
-        }
-        card.append(cardImage)
-        card.append(cardLink)
-        card.append(cardReveal)
-        main.append(card)
-        $(".recipes-displayed").append(main)
-      }
+      $(".moreButton").show()
+      addRecipes()
+    })
 })
-});
 
   $("#resetButton").on("click",function(){
-    ingredientsArray = []
-    ratingArray = []
-    recipeImages = []
+    ingredientsArray = [];
+    ratingArray = [];
+    recipeImages = [];
     maxRatingRecipes = [];
     midRatingRecipes = [];
     lowRatingRecipes = [];
@@ -196,19 +201,44 @@ $(document).ready(function () {
     $("#submitButton").show()
   })
 
-  // Add items to shopping list
-  $(document).on("click",".individualIngredient", function(){
-    var clickIngredient = $(this).text();
-    var domIngredient = $("<li>").text(clickIngredient);
-            
-    $(".listItems").append(domIngredient);
-    $(".listItems").append("<hr>")
-  })
+//newcode
 
   $(document).ready(function(){
       $('.modal').modal();
+
     });
 
 
-});
-});
+  $(".moreButton").on("click",function(){
+    addRecipes()
+  })
+
+})
+
+function addRecipes(){
+  thisCount = count + 6
+  for(i=count; i<thisCount ; i++){
+    main = $("<div>")
+    main.addClass("col m4")
+    card = $("<div>")
+    card.addClass("card sticky-action")
+    cardImage = $("<div>")
+    cardImage.addClass("card-image waves-effect waves-block waves-light")
+    cardImage.append('<img class="activator" src='+maxRatingRecipes[i].image+'>')
+    cardLink = $("<div>")
+    cardLink.addClass("card-action")
+    cardLink.append('<a href="'+maxRatingRecipes[i].url+'">'+maxRatingRecipes[i].label+'</a>')
+    cardReveal = $("<div>")
+    cardReveal.addClass("card-reveal")
+    cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
+    for(line in maxRatingRecipes[i].ingredientLines){
+      cardReveal.append('<p>'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
+    }
+    card.append(cardImage)
+    card.append(cardLink)
+    card.append(cardReveal)
+    main.append(card)
+    $(".recipes-displayed").append(main)
+    count += 1
+  }
+}
