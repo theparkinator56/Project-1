@@ -201,7 +201,7 @@ $(document).ready(function () {
     $("#submitButton").show()
   })
 
-//newcode
+//Modal Functionality
 
   $(document).ready(function(){
       $('.modal').modal();
@@ -242,3 +242,12 @@ function addRecipes(){
     count += 1
   }
 }
+
+  // Add items to shopping list
+  $(document).on("click",".individualIngredient", function(){
+    var clickIngredient = $(this).text();
+    var domIngredient = $("<li>").text(clickIngredient);
+            
+    $(".listItems").append(domIngredient);
+    $(".listItems").append("<hr>")
+  })
