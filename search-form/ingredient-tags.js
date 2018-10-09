@@ -196,14 +196,10 @@ function addRecipes(){
       $(".listItems").append(domIngredient);
       $(".listItems").append("<hr>")
     })
-  
+
 }
 
-    $(".listItems").append(domIngredient);
-    $(".listItems").append("<hr>")
-  })
 
 function SortByRatingDesc(unsortedArray) {
   return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
   x}
-
