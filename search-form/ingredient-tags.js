@@ -199,6 +199,42 @@ function addRecipes(){
   
 }
 
+//Grocery Store API search based on ZIP code entered
+
+  $("#groceryButton").on("click",function() {
+
+    jQuery.ajaxPrefilter(function(options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            options.url = 'https://ca329482.herokuapp.com/' + options.url;
+        }
+    });
+
+    var zipCode = $("#zipCode").val().trim();
+    $("#zipCode").empty();
+
+    var groceryURL = "https://api.yelp.com/v3/businesses/search?location=" + zipCode + "&radius=16000&categories=grocery&limit=3";
+
+    $.ajax({
+        url: groceryURL,
+        method: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer 4gdKRNJYZoIQVLQcdHSNDkZa57qwDCoDujLgbwOvF9qoF_lQi_L9FuNFZ_Ird3JvzIedlK9a6ZloCtTEVwPER__gGFROm1Aywh0YQT_-A2P1CeSZMhMA4F6fzMm8W3Yx');
+        },
+    }).then(function(response) {
+        $("#groceryDisplay").empty();
+
+        for (i=0; i < 3; i++) {
+            let groceryDiv = $("<div>");
+                groceryDiv.addClass("col m4");
+
+                groceryDiv.append("<h5>" + response.businesses[i].name + "</h5>");
+                groceryDiv.append("<p>" + response.businesses[i].location.display_address[0] + "</p>");
+                groceryDiv.append("<p>" + response.businesses[i].location.display_address[1] + "</p>");
+            $("#groceryDisplay").append(groceryDiv);        
+        }
+    });
+  });
+
 // Options button
   $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
