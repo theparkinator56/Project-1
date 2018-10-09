@@ -47,4 +47,14 @@ form { width: 100%;}
     line-height: 25px;
 
 }
+<<<<<<< HEAD
 
+=======
+#spinner {
+    position: relative;
+    top: -60px;
+}
+.individualIngredient {
+    cursor:pointer;
+}
+>>>>>>> 3332e0c554be4093a0c428977f613d12ef10b83c

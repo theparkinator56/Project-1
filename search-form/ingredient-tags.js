@@ -87,29 +87,50 @@ $(document).ready(function () {
 
   //CHECKBOXES
   var dietOptionsArray = [];
+  var healthOptionsArray = [];
 
   $(".health-label").on("click", function () {
 
     let checkedItem = $(this);
     if (checkedItem.prop("checked") == true) {
-      dietOptionsArray.push(checkedItem.attr('id'));
-      console.log(dietOptionsArray);
+      healthOptionsArray.push(checkedItem.attr('id'));
     } else if (checkedItem.prop("checked") == false) {
       var splicevalue = $(this).val();
-      index = dietOptionsArray.indexOf(splicevalue);
-      dietOptionsArray.splice(index, 1);
-      console.log(dietOptionsArray);
+      index = healthOptionsArray.indexOf(splicevalue);
+      healthOptionsArray.splice(index, 1);
     }
+    console.log(healthOptionsArray)
+  })
+    $(".diet-label").on("click", function () {
+
+      let checkedItem = $(this);
+      if (checkedItem.prop("checked") == true) {
+        dietOptionsArray.push(checkedItem.attr('id'));
+        console.log(dietOptionsArray);
+      } else if (checkedItem.prop("checked") == false) {
+        var splicevalue = $(this).val();
+        index = dietOptionsArray.indexOf(splicevalue);
+        dietOptionsArray.splice(index, 1);
+        console.log(dietOptionsArray);
+      }
   });
 
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
+      var diet = ""
+      var health = ""
+      if(dietOptionsArray[0] != undefined){
+      diet = "&diet="+dietOptionsArray[0]
+      }
+      if(healthOptionsArray[0] != undefined){
+        health = "health="+healthOptionsArray[0]
+      }
       console.log(mainIngredient)
       $(".recipes-displayed").empty();
       $("#submitButton").hide()
       $(".midquery").show()
       $.ajax({
-        url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100",
+        url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100&"+health+diet,
         method: "GET"
       }).then(function(response){
         for (ingredientList in response.hits){
@@ -194,10 +215,46 @@ function addRecipes(){
       console.log(clickIngredient);
       $(".listItems").append(domIngredient);
       $(".listItems").append("<hr>")
-    }) 
+    })
 
-  
+
 }
+
+//Grocery Store API search based on ZIP code entered
+
+  $("#groceryButton").on("click",function() {
+    event.preventDefault();
+
+    jQuery.ajaxPrefilter(function(options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            options.url = 'https://ca329482.herokuapp.com/' + options.url;
+        }
+    });
+
+    var zipCode = $("#zipCode").val().trim();
+    $("#zipCode").empty();
+
+    var groceryURL = "https://api.yelp.com/v3/businesses/search?location=" + zipCode + "&radius=16000&term=grocery&limit=3";
+
+    $.ajax({
+        url: groceryURL,
+        method: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer 4gdKRNJYZoIQVLQcdHSNDkZa57qwDCoDujLgbwOvF9qoF_lQi_L9FuNFZ_Ird3JvzIedlK9a6ZloCtTEVwPER__gGFROm1Aywh0YQT_-A2P1CeSZMhMA4F6fzMm8W3Yx');
+        },
+    }).then(function(response) {
+        $("#groceryDisplay").empty();
+
+        for (i=0; i < 3; i++) {
+            let groceryDiv = $("<div>");
+                groceryDiv.addClass("col s4");
+                groceryDiv.append("<h5>" + response.businesses[i].name + "</h5>");
+                groceryDiv.append("<span>" + response.businesses[i].location.display_address[0] + "</span> <br>");
+                groceryDiv.append("<span>" + response.businesses[i].location.display_address[1] + "</span>");
+            $("#groceryDisplay").append(groceryDiv);
+        }
+    });
+  });
 
 // Options button
   $(document).ready(function(){
@@ -207,5 +264,4 @@ function addRecipes(){
 
 function SortByRatingDesc(unsortedArray) {
   return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
-  x}
-
+}
