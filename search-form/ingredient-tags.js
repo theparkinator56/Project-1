@@ -249,9 +249,12 @@ function addRecipes(){
                 groceryDiv.addClass("col m4");
 
                 groceryDiv.append("<h5>" + response.businesses[i].name + "</h5>");
+<<<<<<< HEAD
                 groceryDiv.append("<p>" + response.businesses[i].location.display_address[0] + "</p>");
                 groceryDiv.append("<p>" + response.businesses[i].location.display_address[1] + "</p>");
             $("#groceryDisplay").append(groceryDiv);
+=======
+>>>>>>> master
         }
     });
   });
