@@ -39,7 +39,6 @@ $(document).ready(function () {
     //on click function for adding ingredients
     $("#addButton").on("click", function (event) {
         event.preventDefault();
-        $("#ingredientInput").val("");
         // pass search input into tag
         var ingredientInput = $("#ingredientInput").val().trim();
         if (userIngredients.includes(ingredientInput)) {
@@ -252,7 +251,7 @@ function addRecipes(){
   $(document).on("click",".individualIngredient", function(){
     var clickIngredient = $(this).text();
     var domIngredient = $("<li>").text(clickIngredient);
-            
+
     $(".listItems").append(domIngredient);
     $(".listItems").append("<hr>")
   })
