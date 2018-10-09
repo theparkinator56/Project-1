@@ -192,7 +192,7 @@ function addRecipes(){
     cardImage.addClass("card-image waves-effect waves-block waves-light")
     cardImage.append('<img class="activator" src='+tempArray[i].image+'>')
     cardLink = $("<div>")
-    cardLink.addClass("card-action")
+    cardLink.addClass("card-action truncate")
     cardLink.append('<a href="'+tempArray[i].url+'">'+tempArray[i].name+'</a>')
     cardReveal = $("<div>")
     cardReveal.addClass("card-reveal")
