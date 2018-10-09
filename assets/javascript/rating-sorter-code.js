@@ -22,5 +22,6 @@ for (i = 0; i < ratingObj.length; i++) {
 
     else {
         //psudeocode, need id for the DOM element that will display recipes
-        //"Sorry, we didn't find any recipes that matched closely enough with your ingredients."
+        $(".row recipes-displayed").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.")
     }
+}
