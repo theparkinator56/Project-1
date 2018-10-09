@@ -1,6 +1,6 @@
 /* General  */
 .container {
-    margin-top: 40px;
+    margin-top: 100px;
 }
 .center-box {
     display: flex;
@@ -15,13 +15,24 @@
     border-radius: 5px;
 }
 /* Nav Bar */
+.brand-logo img {
+    position: relative;
+    top: -109px;
+    width: 400px;
+    background-position: bottom;
+}
 .nav {
     background-color: #666;
     box-shadow: none;
 }
 .nav-wrapper {
     margin: 0 20px;
+
 }
+i.fas.fa-question-circle {
+    color: #888;
+}
+
 /* #searchForm checkboxes */
 .checkbox-row .col.m3 {
     display: inline-grid;
