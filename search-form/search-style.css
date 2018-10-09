@@ -14,24 +14,37 @@
     border: 1px solid #aaa;
     border-radius: 5px;
 }
-/* #searchForm {
+/* Nav Bar */
+.nav-wrapper {
+    margin: 0 20px;
+}
+/* #searchForm checkboxes */
+.checkbox-row .col.m3 {
+    display: inline-grid;
+}
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form { width: 100%;}
 
-} */
-
+/* Recipes Displayed */
 .recipes-displayed {
     margin-top: 30px;
-}
-
-.modal-content {
-    color: black;
-    line-height: 25px;
-
 }
 #spinner {
     position: relative;
     top: -60px;
 }
-
 .card-action {
     overflow: hidden;
 }
+
+/* Shoping Cart Modal */
+.modal-content {
+    color: black;
+    line-height: 25px;
+
+}
+
