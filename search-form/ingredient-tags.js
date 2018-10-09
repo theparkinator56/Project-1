@@ -8,21 +8,9 @@ var dietsearch = ""
 var caloriessearch = ""
 var ingredientssearch = ""
 var dynamicurl = "https://api.edamam.com/search?q=" + userIngredients + "&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100"
-var ingredientsArray = []
-var ratingArray = []
-var recipeImages = []
-var ratingRecipes7 = [];
-var ratingRecipes6 = [];
-var ratingRecipes5 = [];
-var ratingRecipes4 = [];
-var ratingRecipes3 = [];
-var ratingRecipes2 = [];
-var ratingRecipes1 = [];
-var ratingRecipes5 = [];
-var ratingRecipesArrays = [ratingRecipes7,ratingRecipes6,ratingRecipes5,ratingRecipes4,ratingRecipes3,ratingRecipes2,ratingRecipes1];
-var maxRatingRecipes = [];
 var count = 0
-
+let usefulObject = [];
+let sortedRecipes = []
 $(document).ready(function () {
     $(".midquery").hide()
     $("#resetButton").hide()
@@ -117,6 +105,7 @@ $(document).ready(function () {
       })
     $("#submitButton").on("click",function(){
       var mainIngredient = userIngredients[0]
+      console.log(mainIngredient)
       $(".recipes-displayed").empty();
       $("#submitButton").hide()
       $(".midquery").show()
@@ -124,79 +113,31 @@ $(document).ready(function () {
         url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100",
         method: "GET"
       }).then(function(response){
-        for (let i=0;i < response.hits.length;i++){
-          var  ingredientlist = response.hits[i].recipe.ingredientLines
-          ingredientsArray.push(ingredientlist)
-          recipeImages.push(response.hits[i].recipe.image||"https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiMl5rxn_fdAhUr0YMKHdiDBxEQjRx6BAgBEAU&url=https%3A%2F%2Fgorving.com%2Fwhat-to-do%2Frecipes-for-the-road&psig=AOvVaw1j9R-0ISQKVVNrQU_XYKI5&ust=1539101999459901")
-        }
-        for (ingredientList in ingredientsArray){
+        for (ingredientList in response.hits){
           var rating = 0
           for (ingredient in userIngredients){
-            for (ingredientLine in ingredientsArray[ingredientList]){
-              if (ingredientsArray[ingredientList][ingredientLine].includes(userIngredients[ingredient])){
+            console.log(ingredientList)
+            for (ingredientLine in response.hits[ingredientList].recipe.ingredientLines){
+              if (response.hits[ingredientList].recipe.ingredientLines[ingredientLine].includes(userIngredients[ingredient])){
                 rating++
               }
             }
           }
-          ratingArray.push(rating)
+          usefulObject.push({name:response.hits[ingredientList].recipe.label,url:response.hits[ingredientList].recipe.url, ingredientLines:response.hits[ingredientList].recipe.ingredientLines, image:response.hits[ingredientList].recipe.image, reciperating:rating})
         }
-
-
-
-
-      for (i = 0; i < ratingArray.length; i++) {
-           if (ratingArray[i] >= userIngredients.length) {
-              ratingRecipes7.push(response.hits[i].recipe);
-          }
-
-          else if (ratingArray[i] === userIngredients.length - 1) {
-              ratingRecipes6.push(response.hits[i].recipe);
-          }
-
-          else if (ratingArray[i] === userIngredients.length - 2) {
-              ratingRecipes5.push(response.hits[i].recipe);
-          }
-          else if (ratingArray[i] === userIngredients.length - 3) {
-              ratingRecipes4.push(response.hits[i].recipe);
-          }
-
-          else if (ratingArray[i] === userIngredients.length - 4) {
-              ratingRecipes3.push(response.hits[i].recipe);
-          }
-          else if (ratingArray[i] === userIngredients.length - 5) {
-              ratingRecipes2.push(response.hits[i].recipe);
-          }
-
-          else if (ratingArray[i] === userIngredients.length - 6) {
-              ratingRecipes1.push(response.hits[i].recipe);
-          }
-
-          else {
-            $(".recipes-displayed").text("Sorry, we didn't find any recipes that matched closely enough with your ingredients.  Try removing one ingredient and search again.")
-          }
-      }
-      for (recipeArray in ratingRecipesArrays){
-        for (recipe in ratingRecipesArrays[recipeArray]){
-          maxRatingRecipes.push(ratingRecipesArrays[recipeArray][recipe])
-        }
-      }
-    }).then(function(){
-      $(".midquery").hide()
-      $("#resetButton").show()
-      $(".moreButton").show()
-      addRecipes()
-    })
-})
+        sortedRecipes = SortByRatingDesc(usefulObject)
+      }).then(function(){
+          $(".midquery").hide()
+          $("#resetButton").show()
+          $(".moreButton").show()
+          addRecipes()
+        })
+      })
 
   $("#resetButton").on("click",function(){
-    ingredientsArray = [];
-    ratingArray = [];
-    recipeImages = [];
-    maxRatingRecipes = [];
-    midRatingRecipes = [];
-    lowRatingRecipes = [];
     userIngredients = [];
-
+    count = 0
+    usefulObject = []
     $("#ingredientInput").val("");
     $("#ingredientTags").empty();
 
@@ -220,23 +161,24 @@ $(document).ready(function () {
 })
 
 function addRecipes(){
-  thisCount = count + 6
-  for(i=count; i<thisCount ; i++){
+    var tempArray = sortedRecipes.splice(count, 6)
+    count += 6
+    for (i in tempArray){
     main = $("<div>")
     main.addClass("col m4")
     card = $("<div>")
     card.addClass("card sticky-action")
     cardImage = $("<div>")
     cardImage.addClass("card-image waves-effect waves-block waves-light")
-    cardImage.append('<img class="activator" src='+maxRatingRecipes[i].image+'>')
+    cardImage.append('<img class="activator" src='+tempArray[i].image+'>')
     cardLink = $("<div>")
     cardLink.addClass("card-action")
-    cardLink.append('<a href="'+maxRatingRecipes[i].url+'">'+maxRatingRecipes[i].label+'</a>')
+    cardLink.append('<a href="'+tempArray[i].url+'">'+tempArray[i].name+'</a>')
     cardReveal = $("<div>")
     cardReveal.addClass("card-reveal")
     cardReveal.append('<span class="card-title grey-text text-darken-4">Ingredients<i class="material-icons right">close</i></span>')
-    for(line in maxRatingRecipes[i].ingredientLines){
-      cardReveal.append('<p>'+maxRatingRecipes[i].ingredientLines[line]+'</p>')
+    for(line in tempArray[i].ingredientLines){
+      cardReveal.append('<p>'+tempArray[i].ingredientLines[line]+'</p>')
     }
     card.append(cardImage)
     card.append(cardLink)
@@ -255,3 +197,7 @@ function addRecipes(){
     $(".listItems").append(domIngredient);
     $(".listItems").append("<hr>")
   })
+
+function SortByRatingDesc(unsortedArray) {
+  return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
+  x}
