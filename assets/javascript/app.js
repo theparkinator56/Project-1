@@ -18,9 +18,6 @@ $(document).ready(function () {
   //autocomplete results are equal to ingredients object
   $('input.autocomplete').autocomplete({
     data,
-    // "Apple": null,
-    // "Watermellon": null,
-    // "Chicken": null
     minLength: 3,
   });
 
@@ -37,6 +34,7 @@ $(document).ready(function () {
     }
     $("#ingredientInput").val("");
   });
+  //add enter button to input bar
   $("#ingredientInput").keypress(function (e) {
     if (e.which == 13) {
       event.preventDefault();
@@ -90,7 +88,7 @@ $(document).ready(function () {
   var healthOptionsArray = [];
 
   $(".health-label").on("click", function () {
-
+    //passes to health array for api call
     let checkedItem = $(this);
     if (checkedItem.prop("checked") == true) {
       healthOptionsArray.push(checkedItem.attr('id'));
@@ -101,6 +99,7 @@ $(document).ready(function () {
     }
     console.log(healthOptionsArray)
   })
+  //passes to diet array for api call
     $(".diet-label").on("click", function () {
 
       let checkedItem = $(this);
@@ -114,9 +113,11 @@ $(document).ready(function () {
         console.log(dietOptionsArray);
       }
   });
-
+    //initiates the start of API call
     $("#submitButton").on("click",function(){
+      // selects first ingredient for the api search
       var mainIngredient = userIngredients[0]
+      //defines as blank so we can use logic whether to input or not.
       var diet = ""
       var health = ""
       if(dietOptionsArray[0] != undefined){
@@ -125,24 +126,26 @@ $(document).ready(function () {
       if(healthOptionsArray[0] != undefined){
         health = "health="+healthOptionsArray[0]
       }
-      console.log(mainIngredient)
+      //hiding of button and showing of loadinggif also removes all recipes from page if there
       $(".recipes-displayed").empty();
       $("#submitButton").hide()
       $(".midquery").show()
+        // actual API call
       $.ajax({
         url :  "https://api.edamam.com/search?q="+mainIngredient+"&app_id=65e2efca&app_key=a27e3c83b5786423f4acc469987a7164&from=0&to=100&"+health+diet,
         method: "GET"
       }).then(function(response){
+        //rating algorith
         for (ingredientList in response.hits){
           var rating = 0
           for (ingredient in userIngredients){
-            console.log(ingredientList)
             for (ingredientLine in response.hits[ingredientList].recipe.ingredientLines){
               if (response.hits[ingredientList].recipe.ingredientLines[ingredientLine].includes(userIngredients[ingredient])){
                 rating++
               }
             }
           }
+          //passing into an array so we can sort by our rating algorith
           usefulObject.push({name:response.hits[ingredientList].recipe.label,url:response.hits[ingredientList].recipe.url, ingredientLines:response.hits[ingredientList].recipe.ingredientLines, image:response.hits[ingredientList].recipe.image, reciperating:rating})
         }
         sortedRecipes = SortByRatingDesc(usefulObject)
@@ -181,6 +184,7 @@ $(document).ready(function () {
 })
 
 function addRecipes(){
+  //our function to add recipes to page. Basic Jquery to create and append elements
     var tempArray = sortedRecipes.splice(count, 6)
     count += 6
     for (i in tempArray){
@@ -205,6 +209,7 @@ function addRecipes(){
     card.append(cardReveal)
     main.append(card)
     $(".recipes-displayed").append(main)
+    //this count allows us to grab more recipes later and know where we left off
     count += 1
   }
 
@@ -235,7 +240,7 @@ function addRecipes(){
     $("#zipCode").empty();
 
     var groceryURL = "https://api.yelp.com/v3/businesses/search?location=" + zipCode + "&radius=16000&term=grocery&limit=3";
-
+    //for our yelp api of finding grocery stores
     $.ajax({
         url: groceryURL,
         method: 'GET',
@@ -261,7 +266,7 @@ function addRecipes(){
     $('.fixed-action-btn').floatingActionButton();
   });
 
-
+// our sorting function, made by Joeseph Kanter
 function SortByRatingDesc(unsortedArray) {
   return unsortedArray.sort((a,b) => b.reciperating - a.reciperating);
 }
