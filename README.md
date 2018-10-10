@@ -15,3 +15,10 @@ Even people with various dietary restrictions can freely use Recikey by simply c
 * Impress your friends with your flexible cooking skills.
 
 [Visit Recikey here](https://c9-recipe-test.herokuapp.com/index.html)
+
+### Developed By:
+* [Dylan Airhart](https://github.com/nfgrawker)
+* [Matt Gasper](https://github.com/mattypockets)
+* [Nathan Hertz](https://github.com/hertz043)
+* [Katie Kasperek](https://github.com/kkasperek)
+* [Parker Call](https://github.com/theparkinator56)
