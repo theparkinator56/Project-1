@@ -10,8 +10,8 @@ Even people with various dietary restrictions can freely use Recikey by simply c
 
 ### Additional Features
 
-..* Create a shopping list for ingredients you don't have by simply clicking any ingredient in the list.
-..* Search for nearby grocery stores by entering your zip code.
-..* Impress your friends with your flexible cooking skills.
+* Create a shopping list for ingredients you don't have by simply clicking any ingredient in the list.
+* Search for nearby grocery stores by entering your zip code.
+* Impress your friends with your flexible cooking skills.
 
 [Visit Recikey here](https://c9-recipe-test.herokuapp.com/index.html)
