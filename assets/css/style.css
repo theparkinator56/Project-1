@@ -84,3 +84,11 @@ form { width: 100%;}
 .individualIngredient {
     cursor:pointer;
 }
+
+#groceryModal {
+    margin-top: 0px;
+}
+
+#grocerySearch {
+    margin-bottom: 0px;
+}
