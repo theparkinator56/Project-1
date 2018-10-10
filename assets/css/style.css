@@ -1,4 +1,11 @@
 /* General  */
+body {
+    font-family: 'Raleway', sans-serif;
+}
+h3 {
+    font-family: 'Marvel', sans-serif;
+    text-transform: uppercase;
+}
 .container {
     margin-top: 100px;
 }
@@ -14,6 +21,7 @@
     border: 1px solid #aaa;
     border-radius: 5px;
 }
+
 /* Nav Bar */
 .brand-logo img {
     position: relative;
@@ -29,10 +37,17 @@
     margin: 0 20px;
 
 }
-i.fas.fa-question-circle {
+.nav-icon {
     color: #888;
 }
 
+/* Action buttons */
+.red {
+    background-color: #eda489 !important;
+}
+.btn-large {
+    background-color: #d15555 !important;
+}
 /* #searchForm checkboxes */
 .checkbox-row .col.m3 {
     display: inline-grid;
