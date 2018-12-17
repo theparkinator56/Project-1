@@ -1,18 +1,20 @@
 # Recikey - Unlock the power of your pantry
 
-Fridge full of random ingredients? Not sure what to cook? Recikey is here to help.
+Have a fridge full of random ingredients? Not sure what to cook? Recikey is here to help.
 
 Just enter in which ingredients you would like to use and Recikey will find a list of recipes including those ingredients.
 
-### Dietary Restrictions
-
-Even people with various dietary restrictions can freely use Recikey by simply checking the box next to their specific diet.
+![ReciKey main page gif](./assets/images/ReciKey_Main.gif)
 
 ### Additional Features
 
 * Create a shopping list for ingredients you don't have by simply clicking any ingredient in the list.
+
+![ReciKey shopping list feature](./assets/images/ReciKey_ShoppingList.gif)
 * Search for nearby grocery stores by entering your zip code.
-* Impress your friends with your flexible cooking skills.
+
+![ReciKey grocery search feature](./assets/images/ReciKey_GrocerySearch.gif)
+* Limit search based on various dietary restrictions.
 
 [Visit Recikey here](https://c9-recipe-test.herokuapp.com/index.html)
 
