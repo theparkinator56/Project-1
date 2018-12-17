@@ -9,8 +9,10 @@ Just enter in which ingredients you would like to use and Recikey will find a li
 ### Additional Features
 
 * Create a shopping list for ingredients you don't have by simply clicking any ingredient in the list.
+
 ![ReciKey shopping list feature](./assets/images/ReciKey_ShoppingList.gif)
 * Search for nearby grocery stores by entering your zip code.
+
 ![ReciKey grocery search feature](./assets/images/ReciKey_GrocerySearch.gif)
 * Limit search based on various dietary restrictions.
 
